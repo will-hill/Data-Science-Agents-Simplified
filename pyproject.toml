@@ -7,8 +7,10 @@ requires-python = ">=3.11"
 dependencies = [
     "cudf-cu12>=25.10.0",
     "jupyterlab>=4.4.10",
-    "langchain-openai>=1.0.1",
+    "langchain-experimental>=0.3.4",
+    "langchain-openai>=0.3.35",
     "langgraph>=1.0.1",
-    "plotly>=6.3.1",
+    "langgraph-api>=0.4.46",
+    "langgraph-cli>=0.4.4",
     "python-dotenv>=1.2.1",
 ]
