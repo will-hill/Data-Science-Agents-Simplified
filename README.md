@@ -4,5 +4,8 @@
 
 --- 
 
-- Video for [001_plotly_langchain.ipynb](https://github.com/will-hill/Data-Science-Agents-Simplified/blob/master/001_plotly_langchain.ipynb)
+- Tutorial for [001_plotly_langchain.ipynb](https://github.com/will-hill/Data-Science-Agents-Simplified/blob/master/001_plotly_langchain.ipynb)
   - https://www.youtube.com/shorts/LBAX1zK2W18
+
+- Tutorial for [002_agent.py](https://github.com/will-hill/Data-Science-Agents-Simplified/blob/master/002_agent.py)
+  - https://www.youtube.com/watch?v=dPdBXK0xZQI
