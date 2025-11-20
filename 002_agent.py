@@ -18,7 +18,7 @@ load_dotenv(override=True)
 llm = ChatOpenAI(
     model="qwen/qwen3-coder-480b-a35b-instruct",
     api_key=os.getenv("NVIDIA_API_KEY"),
-    base_url="https://integrate.api.nvidia.com/v1",    
+    base_url="https://integrate.api.nvidia.com/v1",
     temperature=0.1,
     max_tokens=500,
 )
@@ -36,21 +36,11 @@ def execute_python(code: str) -> str:
     """Execute Python code to analyze the DataFrame 'df'. 
     Variables available: df (pandas DataFrame), pd (pandas module).
     Store your result in a variable called 'result' to return it.
-    The colums available in df are: date, sales, profit.
     """
     try:
         local_vars = {"df": df, "pd": pd}
-        exec(code, 
-             {"__builtins__": __builtins__, "pd": pd}, 
-             local_vars)
-        
-        if "result" in local_vars:
-            return str(local_vars["result"])
-        else:
-            return """
-                Code executed successfully. 
-                Use a variable named 'result' to return values.
-                """
+        exec(code, {"__builtins__": __builtins__, "pd": pd}, local_vars)
+        return str(local_vars.get("result", "Code executed. Use 'result' variable."))
     except Exception as e:
         return f"Error: {str(e)}"
 
@@ -63,6 +53,7 @@ def call_model(state: MessagesState):
     return {"messages": [llm_with_tools.invoke(state["messages"])]}
 
 def should_continue(state: MessagesState):
+    """Route to tools or end"""
     return "tools" if state["messages"][-1].tool_calls else END
 
 # === Build Graph ===
@@ -72,7 +63,6 @@ graph.add_node("tools", ToolNode(tools))
 graph.add_edge(START, "agent")
 graph.add_conditional_edges("agent", should_continue, ["tools", END])
 graph.add_edge("tools", "agent")
-
 # With LangGraph API, persistence is handled automatically by the platform.
 # agent = graph.compile(checkpointer=MemorySaver())
 agent = graph.compile()
@@ -91,13 +81,8 @@ if __name__ == "__main__":
     config = {"configurable": {"thread_id": thread_id+1}}
 
     prompt = "What are the average sales?"
-    result = agent.invoke({"messages": [system_msg, HumanMessage(content=prompt)]}, config=config)
-    
-    
-    # Print final response
-    final_msg = result['messages'][-1]
-    if hasattr(final_msg, 'content'):
-        print("\n" + "="*60)
-        print("AGENT RESPONSE:")
-        print("="*60)
-        print(final_msg.content)
+    result = agent.invoke({"messages": [HumanMessage(content=prompt)]})
+    print("\n" + "="*60)
+    print("AGENT RESPONSE:")
+    print("="*60)
+    print(result['messages'][-1].content)
