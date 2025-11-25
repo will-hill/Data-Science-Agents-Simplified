@@ -58,6 +58,7 @@ Backlog Topics:
 - [ ] LLM Inference Optimizing
 - [ ] Tools Tutorial
 - [ ] Tavily for Agents
+- [ ] LLM Customized Benchmarking
 - [ ] Async LLM inference
 - [ ] MCP
 - [ ] RAG Basics
@@ -68,4 +69,5 @@ Backlog Topics:
 - [ ] Football Modeling Agent
 - [ ] Pitching Modeling Agent
 - [ ] Kaggle Modeling Agent
+
 
