@@ -1,5 +1,6 @@
 # =====================================================
-# === 1. imports =====================================
+# === 1. imports ======================================
+# =====================================================
 import cudf.pandas
 cudf.pandas.install()
 import pandas as pd
@@ -15,7 +16,8 @@ from dotenv import load_dotenv
 
 
 # =====================================================
-# === 2. LLM setup =====================================
+# === 2. LLM setup ====================================
+# =====================================================
 # Load environment variables from .env file
 load_dotenv(override=True)
 
@@ -29,7 +31,8 @@ llm = ChatOpenAI(
 
 # =====================================================
 # === 3. Data =========================================
-# Sample DataFrame
+# =====================================================
+# Toy, Sample DataFrame
 df = pd.DataFrame({
     'date': pd.date_range('2024-01-01', periods=10),
     'sales': [1_000_000, 120, 115, 140, 160, 155, 180, 190, 185, 200],
@@ -38,10 +41,11 @@ df = pd.DataFrame({
 
 # =====================================================
 # === 4. Tools ========================================
+# =====================================================
 # Define tool to execute Python code
 @tool
 def execute_python(code: str) -> str:
-    """Execute Python code to analyze the DataFrame 'df'. 
+    """Execute Python code to analyze the DataFrame 'df'.
     Variables available: df (pandas DataFrame), pd (pandas module).
     Store your result in a variable called 'result' to return it.
     """
@@ -52,8 +56,10 @@ def execute_python(code: str) -> str:
     except Exception as e:
         return f"Error: {str(e)}"
 
+
 # =====================================================
 # === 5. Nodes ========================================
+# =====================================================
 # Define agent nodes and conditional edge
 def planner_agent(state: MessagesState):
     """Decides what analysis to perform"""
@@ -64,8 +70,9 @@ def planner_agent(state: MessagesState):
     messages = [system] + state["messages"]
     return {"messages": [llm.invoke(messages)]}
 
+
 def coder_agent(state: MessagesState):
-    """Generates and executes code"""
+    """Generates and executes code (via tool calls)"""
     system = SystemMessage(content=f"""You are a coding agent.
     DataFrame 'df' has columns: {list(df.columns)}.
     Sample data: {df.head(3).to_string()}
@@ -78,11 +85,18 @@ def coder_agent(state: MessagesState):
     return {"messages": [response]}
 
 def should_continue(state: MessagesState):
-    """Route to tools or end"""
-    return "tools" if state["messages"][-1].tool_calls else END
+    """Orchestration decision:
+    If the last message includes tool calls, route to 'tools',
+    otherwise we are done and route to END.
+    """
+    last_msg = state["messages"][-1]
+    # When using bind_tools, tool calls (if any) live here:
+    return "tools" if getattr(last_msg, "tool_calls", None) else END
+
 
 # =====================================================
 # === 6. Build Graph ==================================
+# =====================================================
 # Build the state graph
 graph = StateGraph(MessagesState)
 graph.add_node("planner", planner_agent)
@@ -100,6 +114,7 @@ agent = graph.compile()
 
 # =====================================================
 # === Run =============================================
+# =====================================================
 if __name__ == "__main__":
     prompt = "What are the average sales?"
     result = agent.invoke({"messages": [HumanMessage(content=prompt)]})
