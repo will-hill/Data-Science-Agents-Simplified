@@ -54,6 +54,7 @@ Backlog Topics:
 - [X] Plotly Agent
 - [X] LangGraph Studio
 - [X] Multi-Agents
+- [ ] No-Code Research Agent
 - [ ] Agent Orchestration
 - [ ] LLM Inference Optimizing
 - [ ] Tools Tutorial
@@ -69,5 +70,6 @@ Backlog Topics:
 - [ ] Football Modeling Agent
 - [ ] Pitching Modeling Agent
 - [ ] Kaggle Modeling Agent
+
 
 
