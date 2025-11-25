@@ -1,0 +1,8 @@
+{
+	"dependencies": ["."],
+	"graphs": {
+		"empty": "./004_empty.py:app",
+		"orch_off": "./004_orchestration_OFF.py:app",
+		"orch_on":"./004_orchestration_ON.py:app"		
+	}
+}
