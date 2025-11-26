@@ -102,7 +102,10 @@ graph.add_node("tools", ToolNode([execute_python]))
 # Static linear flow (brittle)
 graph.add_edge(START, "planner")
 graph.add_edge("planner", "coder")
+
+# ⚠️ BUG: Always routes to tools, even when LLM doesn't request one
 graph.add_edge("coder", "tools")
+
 graph.add_edge("tools", END)
 
 app = graph.compile()
@@ -115,6 +118,10 @@ if __name__ == "__main__":
     result = app.invoke({"messages": [HumanMessage(content=prompt)]})    
     print(result['messages'][-1].content)
     
-    prompt = "Repeat the last question back to me."
+    prompt = "Say, 'I love AI!'"
+    result = app.invoke({"messages": [HumanMessage(content=prompt)]})    
+    print(result['messages'][-1].content)
+    
+    prompt = "What's 2+2?"
     result = app.invoke({"messages": [HumanMessage(content=prompt)]})    
     print(result['messages'][-1].content)

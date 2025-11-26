@@ -52,8 +52,6 @@ def execute_python(code: str) -> str:
     Store your result in a variable called 'result' to return it.
     """
     try:
-        import time
-        time.sleep(2)  # Simulate some delay
         local_vars = {"df": df, "pd": pd}
         exec(code, {"__builtins__": __builtins__, "pd": pd}, local_vars)
         return str(local_vars.get("result", "Code executed. Use 'result' variable."))
@@ -62,7 +60,7 @@ def execute_python(code: str) -> str:
 
 
 # =====================================================
-# === 5. Nodes ( 22 LOC ) =============================
+# === 5. Nodes ( 18 LOC ) =============================
 # =====================================================
 
 class AgentState(TypedDict):
@@ -84,9 +82,6 @@ def planner_agent(state: AgentState):
     
     messages = [system] + state["messages"]
     planner_reply = llm.invoke(messages)
-    # Store the plan in structured state
-    import time
-    time.sleep(2)  # Simulate some delay
     return {
         "messages": [planner_reply],
         "plan": planner_reply.content,
@@ -94,44 +89,30 @@ def planner_agent(state: AgentState):
 
 
 def coder_agent(state: AgentState):
-    """Generates and executes code/instructions (via tool calls) and writes response into state."""
+    """Generates and executes code/instructions (via tool calls)"""
     system = SystemMessage(content=f"""You are a coding agent.
     DataFrame 'df' has columns: {list(df.columns)}.
     Sample data: {df.head(3).to_string()}
     
-    Write Python and pandas code to solve the task. Store the answer in 'result'.""")
+    Write Python and pandas code to solve the task.""")
     messages = [system] + state["messages"]
-    llm_with_tools = llm.bind_tools([execute_python])
-    coder_reply = llm_with_tools.invoke(messages)    
-    # --- Extract code (if there) from tool call or content_blocks ---
+    llm_with_tools = llm.bind_tools([execute_python])    
+    coder_reply = llm_with_tools.invoke(messages)
+    # Extract code for state tracking (optional)
     code_str = coder_reply.content or ""
-    # Newer LangChain / OpenAI-style: content_blocks with type "tool_call"
-    blocks = getattr(coder_reply, "content_blocks", None)
-    if blocks:
-        for block in blocks:
-            if block.get("type") == "tool_call":
-                args = block.get("args") or {}
-                if "code" in args:
-                    code_str = args["code"]
-                    break
+    if hasattr(coder_reply, "tool_calls") and bool(coder_reply.tool_calls):
+        code_str = coder_reply.tool_calls[0].get("args", {}).get("code", "")
     
     return {
         "messages": [coder_reply],
-        "code": code_str,
-    }
+        "code": code_str
+        }  
 
 
 def should_continue(state: AgentState):
-    import time
-    time.sleep(2)  # Simulate some delay
     last_msg = state["messages"][-1]
-
-    # New style via content_blocks
-    blocks = getattr(last_msg, "content_blocks", None)
-    if blocks:
-        for block in blocks:
-            if block.get("type") == "tool_call":
-                return "tools"
+    if hasattr(last_msg, "tool_calls") and bool(last_msg.tool_calls):
+        return "tools"    
 
     return END
 
@@ -171,6 +152,10 @@ if __name__ == "__main__":
     result = app.invoke({"messages": [HumanMessage(content=prompt)]})    
     print(result['messages'][-1].content)
     
-    prompt = "Repeat the last question back to me."
+    prompt = "Say, 'I love AI!'"
+    result = app.invoke({"messages": [HumanMessage(content=prompt)]})    
+    print(result['messages'][-1].content)
+    
+    prompt = "What's 2+2?"
     result = app.invoke({"messages": [HumanMessage(content=prompt)]})    
     print(result['messages'][-1].content)
