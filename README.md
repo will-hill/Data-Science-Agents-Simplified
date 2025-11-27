@@ -48,14 +48,27 @@ Getting started with Multi-Agent with a very simple example
 <br/>
 
 
+
+### 🦜🔗 Multi-Agent Orchestration OFF v ON
+Understanding and Isolating Multi-Agent Orchestration in LangGraph
+ - 🐍 [004_orchestration_OFF.py](https://github.com/will-hill/Data-Science-Agents-Simplified/blob/master/004_orchestration_OFF.py)
+ - 🐍 [004_orchestration_ON.py](https://github.com/will-hill/Data-Science-Agents-Simplified/blob/master/004_orchestration_ON.py)
+ - 📙 https://github.com/will-hill/Data-Science-Agents-Simplified/blob/master/004_orch_OFF_v_ON.ipynb
+ - 📺 https://www.youtube.com/watch?v=zAjKqKHY1LE
+ - 📰 https://accelerated-ai.medium.com/multi-agent-orchestration-496ff7aa012b
+<br/>  
+<br/>
+
+
+
 --- 
 Backlog Topics:
 - [X] Frameless Agent
 - [X] Plotly Agent
 - [X] LangGraph Studio
 - [X] Multi-Agents
+- [X] Agent Orchestration
 - [ ] No-Code Research Agent
-- [ ] Agent Orchestration
 - [ ] LLM Inference Optimizing
 - [ ] Tools Tutorial
 - [ ] Tavily for Agents
@@ -71,6 +84,7 @@ Backlog Topics:
 - [ ] Pitching Modeling Agent
 - [ ] Kaggle Modeling Agent
 - [ ] Robot Arm
+
 
 
 
