@@ -54,6 +54,7 @@ Understanding and Isolating Multi-Agent Orchestration in LangGraph
  - 🐍 [004_orchestration_OFF.py](https://github.com/will-hill/Data-Science-Agents-Simplified/blob/master/004_orchestration_OFF.py)
  - 🐍 [004_orchestration_ON.py](https://github.com/will-hill/Data-Science-Agents-Simplified/blob/master/004_orchestration_ON.py)
  - 📙 https://github.com/will-hill/Data-Science-Agents-Simplified/blob/master/004_orch_OFF_v_ON.ipynb
+ - 🎥 https://www.youtube.com/shorts/PRffoVllZ7Q
  - 📺 https://www.youtube.com/watch?v=zAjKqKHY1LE
  - 📰 https://accelerated-ai.medium.com/multi-agent-orchestration-496ff7aa012b
 <br/>  
@@ -84,6 +85,7 @@ Backlog Topics:
 - [ ] Pitching Modeling Agent
 - [ ] Kaggle Modeling Agent
 - [ ] Robot Arm
+
 
 
 
