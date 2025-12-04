@@ -1,0 +1,4 @@
+.ipynb_checkpoints
+uv.lock
+.env
+.gitignore

@@ -6,11 +6,14 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "cudf-cu12>=25.10.0",
+    "ipywidgets>=8.1.8",
     "jupyterlab>=4.4.10",
+    "jupyterlab-nvdashboard>=0.13.0",
     "langchain-experimental>=0.3.4",
     "langchain-openai>=0.3.35",
     "langgraph>=1.0.1",
     "langgraph-api>=0.4.46",
     "langgraph-cli>=0.4.4",
     "python-dotenv>=1.2.1",
+    "vllm[all]>=0.11.2",
 ]
