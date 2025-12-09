@@ -2,3 +2,5 @@
 uv.lock
 .env
 .gitignore
+.langgraph_api
+__pycache__
