@@ -12,24 +12,25 @@
 
 ### 2. Install Dependencies
 
- - [ ] ```uv add --upgrade mcp langchain-mcp-adapters langchain-openai sglang langgraph jupyterlab jupyterlab-nvdashboard```
+ - [ ] ```uv add --upgrade mcp langchain-mcp-adapters langchain-openai sglang langgraph jupyterlab jupyterlab-nvdashboard yfinance pandas```
 
 <br/>
 
-### 3. MPC Server
+### 3. Jupyter Lab
+- [ ] ```uv run jupyter lab```
+
+<br/>
+
+### 4. MPC Server
  - [ ] ```uv run python 006_MCP_Server.py```
 
 <br/>
 
-### 4. LLM Server - SGLang w/ Qwen
+### 5. LLM Server - SGLang w/ Qwen
  - [ ] ```uv run python -m sglang.launch_server --model-path Qwen/Qwen2.5-0.5B-Instruct --tool-call-parser qwen```
 
 <br/>
 
-### 5. Jupyter Lab
-- [ ] ```uv run jupyter lab```
-
-<br/>
 
 ### 6. LangGraph App w/ MCP Client
 - [ ] Run 006_MCP_LangGraph.ipynb
