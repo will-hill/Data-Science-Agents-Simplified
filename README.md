@@ -53,13 +53,20 @@ Getting started with Multi-Agent with a very simple example
 Understanding and Isolating Multi-Agent Orchestration in LangGraph
  - 🐍 [004_orchestration_OFF.py](https://github.com/will-hill/Data-Science-Agents-Simplified/blob/master/004_orchestration_OFF.py)
  - 🐍 [004_orchestration_ON.py](https://github.com/will-hill/Data-Science-Agents-Simplified/blob/master/004_orchestration_ON.py)
- - 📙 https://github.com/will-hill/Data-Science-Agents-Simplified/blob/master/004_orch_OFF_v_ON.ipynb
+ - 📙 [004_orch_OFF_v_ON.ipynb](https://github.com/will-hill/Data-Science-Agents-Simplified/blob/master/004_orch_OFF_v_ON.ipynb)
  - 🎥 https://www.youtube.com/shorts/PRffoVllZ7Q
  - 📺 https://www.youtube.com/watch?v=zAjKqKHY1LE
  - 📰 https://accelerated-ai.medium.com/multi-agent-orchestration-496ff7aa012b
 <br/>  
 <br/>
 
+
+### 🤖💬+🦜🕸️ LLMs w/ SGLang & LangGraph
+Local LLM Inference with SGLang and LangChain LangGraph
+ - 📙 [005_SGLang.ipynb](https://github.com/will-hill/Data-Science-Agents-Simplified/blob/master/005_SGLang.ipynb)
+ - 🎥 https://www.youtube.com/shorts/46Is-rMxXR8
+ - 📺 https://www.youtube.com/watch?v=KaWbfpJvxmA
+ - 📰 https://accelerated-ai.medium.com/sglang-for-code-gen-w-langgraph-5fa3f7dd4f25
 
 
 --- 
@@ -69,13 +76,13 @@ Backlog Topics:
 - [X] LangGraph Studio
 - [X] Multi-Agents
 - [X] Agent Orchestration
+- [X] Local LLM SGLang
+- [X] MCP Tooling
 - [ ] No-Code Research Agent
 - [ ] LLM Inference Optimizing
-- [ ] Tools Tutorial
 - [ ] Tavily for Agents
 - [ ] LLM Customized Benchmarking
 - [ ] Async LLM inference
-- [ ] MCP
 - [ ] RAG Basics
 - [ ] VectorDB Basics
 - [ ] FineTuning Basics
@@ -85,6 +92,7 @@ Backlog Topics:
 - [ ] Pitching Modeling Agent
 - [ ] Kaggle Modeling Agent
 - [ ] Robot Arm
+
 
 
 
