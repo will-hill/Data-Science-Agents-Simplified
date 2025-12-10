@@ -75,6 +75,7 @@ Local LLM Inference with SGLang and LangChain LangGraph
 MCP Server, Tools, Client with LangChain LangGraph
  - 📙 [006_MCP_LangGraph.ipynb](https://github.com/will-hill/Data-Science-Agents-Simplified/blob/master/006_MCP_LangGraph.ipynb)
  - 📙 [006_MCP_LangGraph_Stocks.ipynb](https://github.com/will-hill/Data-Science-Agents-Simplified/blob/master/006_MCP_LangGraph_Stocks.ipynb)
+ - 🎥 https://youtube.com/shorts/jUahgNRlIMQ
  - 📺 https://www.youtube.com/watch?v=oSXNhrerlFE
  - 📰 https://medium.com/@accelerated-ai/simple-practical-mcp-langgraph-8950b42cc1cc
 
@@ -102,6 +103,7 @@ Backlog Topics:
 - [ ] Pitching Modeling Agent
 - [ ] Kaggle Modeling Agent
 - [ ] Robot Arm
+
 
 
 
